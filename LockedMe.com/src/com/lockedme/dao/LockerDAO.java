@@ -12,5 +12,5 @@ public interface LockerDAO {
 	public void deleteFileLock(int id) throws FileLockException;
 	public FileLock getFile(int id)throws FileLockException;
 	public List<String> showMyFiles()throws FileLockException;
-
+	public void exit() throws FileLockException;
 }

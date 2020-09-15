@@ -76,7 +76,7 @@ public class LockedMeMain {
 							
 							try {
 								f=service.createFileLock(f);
-								System.out.println(f.getName()+" with id= "+f.getId()+" added in your Locker successfully....:-)" );
+								System.out.println("file with name - "+f.getName()+", and id= "+f.getId()+" added in your Locker successfully....:-)" );
 							}catch(FileLockException e1) {
 								System.out.println(e1.getMessage());
 							}
@@ -85,6 +85,7 @@ public class LockedMeMain {
 							System.out.println("Please enter id of the file to be deleted");
 							int id=Integer.parseInt(input.nextLine());
 							try {
+					
 								service.deleteFileLock(id);
 								System.out.println("file with id = "+id+" deleted successfully");
 								System.out.println("");
@@ -116,6 +117,11 @@ public class LockedMeMain {
 					break;
 	
 				case 3: 
+					try {
+						service.exit();
+					} catch (FileLockException e) {
+						e.printStackTrace();
+					}
 					System.out.println("Exitted.. Thanks for visiting LockerMe.com...See you again..");
 					break;
 					

@@ -35,4 +35,11 @@ public class LockedMeServiceImpl implements LockedMeService {
 		return dao.showMyFiles();
 	}
 
+	@Override
+	public void exit() throws FileLockException {
+		
+		dao.exit();
+		
+	}
+
 }
