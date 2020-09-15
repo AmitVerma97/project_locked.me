@@ -100,13 +100,15 @@ public class LockerDAOImpl implements LockerDAO {
 		if (fileLockMap.size()==0) {
 		}
 		else {
-			int i=1000+fileLockMap.size();
-			while(i>1000) {
+			int i=fileLockMap.size();
+			for(int j=1;j<=i;j++){
 				try  
-				{         
-				File f= new File(fileLockMap.get(i).getName());    
+				{
+					if(fileLockMap.containsKey(1000+j)) {
+				File f= new File(fileLockMap.get(1000+j).getName());    
 				f.delete();
-				i--;
+				}
+					else {i++;}
 				//System.out.println("success deletion");
 				}  
 				catch(Exception e)  

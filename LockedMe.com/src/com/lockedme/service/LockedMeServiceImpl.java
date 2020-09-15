@@ -52,7 +52,7 @@ public class LockedMeServiceImpl implements LockedMeService {
 	
 	private boolean isValidName(String name) {
 		boolean val=false;
-		if(name.trim().matches("[a-zA-Z _.]{1,15}")) {
+		if(name.trim().matches("[a-zA-Z _.]{1,40}")) {
 			val=true;
 		}
 		return val;

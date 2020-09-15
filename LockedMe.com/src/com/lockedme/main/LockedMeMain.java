@@ -11,14 +11,17 @@ import com.lockedme.service.LockedMeServiceImpl;
 public class LockedMeMain {
 
 	public static void main(String[] args) {
-		System.out.println("<Welcome to LockedMe.com>");
-		System.out.println("*************************");
-		System.out.println("developed by Amit Verma");
-		System.out.println("\nLockedMe.com helps you manage ");
-		System.out.println("your files efficiently and safely");
-		System.out.println("\nPlease select appropriate option");
+		System.out.println("\n    <Welcome to LockedMe.com>");
+		System.out.println("     *************************");
+		System.out.println("    -developed by Amit Verma");
+		System.out.println("    -a trainee at Simplilearn");
+		System.out.println("           ________________");
+		System.out.println("\n    LockedMe.com helps you manage ");
+		System.out.println("   your files efficiently and safely");
+		System.out.println("           ________________");
+		System.out.println("\nPlease select appropriate option(1-3)");
 		System.out.println("from the menu below to get started");
-		System.out.println("**************************************");
+		System.out.println("\n**************************************");
 		Scanner input = new Scanner(System.in);
 		int choice=0;
 		
@@ -27,9 +30,9 @@ public class LockedMeMain {
 			do{
 				System.out.println("\nLocker Menu");
 				System.out.println("..........................");
-				System.out.println("1)Show all my files");
-				System.out.println("2)Add/Delete/Search a file");
-				System.out.println("3)Exit");
+				System.out.println("1) Show all my files");
+				System.out.println("2) Add/Delete/Search a file");
+				System.out.println("3) Exit LockedMe.com");
 				System.out.println("...........................");
 				
 				try {
@@ -59,7 +62,7 @@ public class LockedMeMain {
 					//Scanner input2 = new Scanner(System.in);
 					
 					do {
-						System.out.println("Please select from following operations");
+						System.out.println("Please select from following operations(1-4)");
 						System.out.println("----------------------------------------");
 						System.out.println("1) Add a file to my Locker");
 						System.out.println("2) Delete a file from my Locker");
@@ -74,10 +77,10 @@ public class LockedMeMain {
 						switch(ch) {
 						case 1 :
 							System.out.println("Please enter name of the file below");
-							System.out.println("its length should not exceed 15");
-							System.out.println("only alphabets,underscores,dots and spaces are allowed");
+							System.out.println("-its length should not exceed 40");
+							System.out.println("-only alphabets,underscores,dots and spaces are allowed");
 							FileLock f=new FileLock();
-							System.out.println("\nEnter file name");
+							System.out.println("\nEnter file name :");
 							f.setName(input.nextLine());
 							
 							try {
@@ -88,7 +91,7 @@ public class LockedMeMain {
 							ch=0;
 							break;
 						case 2 : 
-							System.out.println("Please enter id of the file to be deleted");
+							System.out.println("Please enter id of the file to be deleted :");
 							
 							try {
 								int id=Integer.parseInt(input.nextLine());
@@ -102,7 +105,7 @@ public class LockedMeMain {
 							break;
 							
 						case 3:
-							System.out.println("Please enter file id of file you are looking for..");
+							System.out.println("Please enter file id of file you are looking for : ");
 							
 							try {
 								int id =Integer.parseInt(input.nextLine());
