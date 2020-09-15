@@ -22,10 +22,13 @@ public class LockerDAOImpl implements LockerDAO {
 		boolean success;  
 		try   
 		{  
-		success = file.createNewFile();  //creates a new file  
-		if(success)      // test if successfully created a new file  
+		success = file.createNewFile(); 
+		if(success)     
 		{  
-		System.out.println("file created "+file.getCanonicalPath()); //returns the path string  
+			fileLock.setId(++c);
+			fileLockMap.put(fileLock.getId(),fileLock);
+		System.out.println("file created "+file.getCanonicalPath()); 
+		System.out.println("file with name - "+fileLock.getName()+", and id= "+fileLock.getId()+" added in your Locker successfully....:-)" );
 		}  
 		else  
 		{  
@@ -34,10 +37,9 @@ public class LockerDAOImpl implements LockerDAO {
 		}   
 		catch (IOException e)   
 		{  
-		e.printStackTrace();    //prints exception if any  
+		e.printStackTrace();   
 		}
-		fileLock.setId(++c);
-		fileLockMap.put(fileLock.getId(),fileLock);
+		
 		return fileLock;
 	}
 
@@ -45,27 +47,24 @@ public class LockerDAOImpl implements LockerDAO {
 	public void deleteFileLock(int id) throws FileLockException {
 		
 		if (fileLockMap.containsKey(id)) {
-			try  
-			{
+			
 			String fname=fileLockMap.get(id).getName();
 			File f= new File(fname);          
 			if(f.delete())                     
 			{  
-			System.out.println(f.getName() + " deleted");
+			System.out.println("file named "+f.getName() + " deleted");
+			System.out.println("file with id = "+id+" deleted successfully");
 			}  
 			else  
 			{  
 			System.out.println("failed");  
 			}  
-			}  
-			catch(Exception e)  
-			{  
-			e.printStackTrace();  
-			}  
+			 
+			  
 			fileLockMap.remove(id);
 		}
 		else {
-			throw new FileLockException("Entered Id" + id + " doesnt exist");
+			throw new FileLockException("Entered File Id doesnot exist...Please enter correct id..");
 		}
 		
 	}
@@ -77,7 +76,7 @@ public class LockerDAOImpl implements LockerDAO {
 			return fileLockMap.get(id);
 		}
 		else {
-			throw new FileLockException("Entered Id" + id + " doesnt exist");
+			throw new FileLockException("Entered Id doesnot exist");
 		}
 	}
 

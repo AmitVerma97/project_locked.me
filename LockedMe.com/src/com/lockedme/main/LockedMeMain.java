@@ -18,17 +18,19 @@ public class LockedMeMain {
 		System.out.println("your files efficiently and safely");
 		System.out.println("\nPlease select appropriate option");
 		System.out.println("from the menu below to get started");
+		System.out.println("**************************************");
 		Scanner input = new Scanner(System.in);
 		int choice=0;
 		
 		LockedMeService service = new LockedMeServiceImpl();
 
-			while(choice!=3){
+			do{
 				System.out.println("\nLocker Menu");
-				System.out.println("==============");
+				System.out.println("..........................");
 				System.out.println("1)Show all my files");
 				System.out.println("2)Add/Delete/Search a file");
 				System.out.println("3)Exit");
+				System.out.println("...........................");
 				
 				try {
 					choice=Integer.parseInt(input.nextLine());
@@ -51,6 +53,7 @@ public class LockedMeMain {
 						System.out.println(e.getMessage());
 					}
 					break;
+					
 				case 2 :
 					int ch=0;
 					//Scanner input2 = new Scanner(System.in);
@@ -62,6 +65,7 @@ public class LockedMeMain {
 						System.out.println("2) Delete a file from my Locker");
 						System.out.println("3) Search a file in my Locker");
 						System.out.println("4) Return to main menu");
+						System.out.println("----------------------------------------");
 						try {
 							ch=Integer.parseInt(input.nextLine());
 						}catch(NumberFormatException e) {
@@ -69,42 +73,47 @@ public class LockedMeMain {
 						}
 						switch(ch) {
 						case 1 :
-							System.out.println("Please enter details below");
+							System.out.println("Please enter name of the file below");
+							System.out.println("its length should not exceed 15");
+							System.out.println("only alphabets,underscores,dots and spaces are allowed");
 							FileLock f=new FileLock();
-							System.out.println("Enter file name");
+							System.out.println("\nEnter file name");
 							f.setName(input.nextLine());
 							
 							try {
 								f=service.createFileLock(f);
-								System.out.println("file with name - "+f.getName()+", and id= "+f.getId()+" added in your Locker successfully....:-)" );
 							}catch(FileLockException e1) {
 								System.out.println(e1.getMessage());
 							}
+							ch=0;
 							break;
 						case 2 : 
 							System.out.println("Please enter id of the file to be deleted");
-							int id=Integer.parseInt(input.nextLine());
-							try {
-					
-								service.deleteFileLock(id);
-								System.out.println("file with id = "+id+" deleted successfully");
-								System.out.println("");
-							}catch(FileLockException e2) {
-								System.out.println(e2.getMessage());
-							}
 							
+							try {
+								int id=Integer.parseInt(input.nextLine());
+								service.deleteFileLock(id);
+		
+							}catch(Exception e2) {
+								System.out.println("Entered File Id doesnot exist...Please enter correct id..");
+								
+							}
+							ch=0;
 							break;
 							
 						case 3:
 							System.out.println("Please enter file id of file you are looking for..");
-							id =Integer.parseInt(input.nextLine());
+							
 							try {
+								int id =Integer.parseInt(input.nextLine());
 								FileLock fl=service.getFile(id);
 								System.out.println("Here is the file you are looking for ");
 								System.out.println(fl.getName());
-							}catch(FileLockException e3) {
-								System.out.println(e3.getMessage());
+							}catch(Exception e3) {
+								System.out.println("Entered File Id doesnot exist...Please enter correct id..");
+							
 							}
+							ch=0;
 							break;
 						case 4:
 							break;
@@ -122,7 +131,8 @@ public class LockedMeMain {
 					} catch (FileLockException e) {
 						e.printStackTrace();
 					}
-					System.out.println("Exitted.. Thanks for visiting LockerMe.com...See you again..");
+					System.out.println("Exitted.. ");
+					System.out.println("Thanks for visiting LockerMe.com...See you again..");
 					break;
 					
 				default : 
@@ -131,7 +141,7 @@ public class LockedMeMain {
 				}
 
 				
-			}
+			}while(choice!=3);
 			
 			input.close();
 	}
